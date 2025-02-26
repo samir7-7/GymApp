@@ -17,6 +17,8 @@ public abstract class GymMember {
     this.membershipStartDate = membershipStartDate;
   }
 
+  public int getId
+
   abstract void markAttendence();
 
   public void activateMembership() {
