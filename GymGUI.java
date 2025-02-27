@@ -16,7 +16,21 @@ public class GymGUI extends JFrame {
 
   private final Color BUTTON_COLOR = new Color(42, 103, 164);
 
-  private ArrayList<String> regularMembers = new ArrayList<>();
+  private ArrayList<GymMember> allMembers = new ArrayList<>();
+
+  public boolean isValidID(String id) {
+    try {
+      int idInt = Integer.parseInt(id);
+      for (int i = 0; i < allMembers.size(); i++) {
+        if (allMembers.get(i).getId() == idInt) {
+          return false;
+        }
+      }
+      return idInt > 0;
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
 
   public GymGUI() {
     setTitle("Gym Management System");
@@ -127,7 +141,31 @@ public class GymGUI extends JFrame {
     addRegularMemberButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // Implement backend logic here
+        String id = idField.getText();
+        String name = nameField.getText();
+        String location = locationField.getText();
+        String phone = phoneField.getText();
+        String email = emailField.getText();
+        String gender = maleRadioButton.isSelected() ? "Male" : "Female";
+        String dob = dobField.getText();
+        String startDate = startDateField.getText();
+
+        if (id.isEmpty() || name.isEmpty() || location.isEmpty() || phone.isEmpty() || email.isEmpty() || dob.isEmpty()
+            || startDate.isEmpty()) {
+          JOptionPane.showMessageDialog(GymGUI.this, "All fields are required!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+          if (isValidID(id)) {
+            RegularMember regularMember = new RegularMember(Integer.parseInt(id), name, location, phone, email,
+                gender,
+                dob, startDate, 30,
+                referralSourceField.getText());
+            allMembers.add(regularMember);
+            JOptionPane.showMessageDialog(GymGUI.this, "Data Added Successfully");
+          } else {
+            JOptionPane.showMessageDialog(GymGUI.this, "Invalid ID", "Error", JOptionPane.ERROR_MESSAGE);
+          }
+        }
       }
     });
 

@@ -5,7 +5,7 @@ public abstract class GymMember {
   protected double loyaltyPoints;
   protected boolean activeStatus;
 
-  GymMember(int id, String name, String location, String phone, String email, String gender, String DOB,
+  public GymMember(int id, String name, String location, String phone, String email, String gender, String DOB,
       String membershipStartDate) {
     this.id = id;
     this.name = name;
@@ -17,7 +17,49 @@ public abstract class GymMember {
     this.membershipStartDate = membershipStartDate;
   }
 
-  public int getId
+  public int getId() {
+    return id;
+  }
+
+  public int getAttendence() {
+    return attendence;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getGender() {
+    return gender;
+  }
+
+  public String getDOB() {
+    return DOB;
+  }
+
+  public String getMembershipStartDate() {
+    return membershipStartDate;
+  }
+
+  public double getLoyaltyPoints() {
+    return loyaltyPoints;
+  }
+
+  public boolean isActiveStatus() {
+    return activeStatus;
+  }
 
   abstract void markAttendence();
 
