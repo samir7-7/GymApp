@@ -5,7 +5,7 @@ public abstract class GymMember {
   protected double loyaltyPoints;
   protected boolean activeStatus;
 
-  public GymMember(int id, String name, String location, String phone, String email, String gender, String DOB,
+  GymMember(int id, String name, String location, String phone, String email, String gender, String DOB,
       String membershipStartDate) {
     this.id = id;
     this.name = name;

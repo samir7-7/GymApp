@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GymGUI extends JFrame {
-  private JTextField idField, nameField, locationField, phoneField, emailField, dobField, startDateField,
-      referralSourceField, paidAmountField, removalReasonField, trainerField;
+  private JTextField idField, nameField, locationField, phoneField, emailField,
+      referralSourceField, paidAmountField, removalReasonField, dobField, startDateField, trainerField;
   private JRadioButton maleRadioButton, femaleRadioButton;
   private JComboBox<String> planComboBox;
   private JButton addRegularMemberButton, addPremiumMemberButton, activateMembershipButton, deactivateMembershipButton,
@@ -16,7 +16,7 @@ public class GymGUI extends JFrame {
 
   private final Color BUTTON_COLOR = new Color(42, 103, 164);
 
-  private ArrayList<GymMember> allMembers = new ArrayList<>();
+  private ArrayList<GymMember> allMembers = new ArrayList<GymMember>();
 
   public boolean isValidID(String id) {
     try {
@@ -149,18 +149,17 @@ public class GymGUI extends JFrame {
         String gender = maleRadioButton.isSelected() ? "Male" : "Female";
         String dob = dobField.getText();
         String startDate = startDateField.getText();
-
         if (id.isEmpty() || name.isEmpty() || location.isEmpty() || phone.isEmpty() || email.isEmpty() || dob.isEmpty()
             || startDate.isEmpty()) {
           JOptionPane.showMessageDialog(GymGUI.this, "All fields are required!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-
           if (isValidID(id)) {
             RegularMember regularMember = new RegularMember(Integer.parseInt(id), name, location, phone, email,
                 gender,
-                dob, startDate, 30,
-                referralSourceField.getText());
+                dob, startDate, 30, "samir");
             allMembers.add(regularMember);
+            System.out.println(allMembers);
+            allMembers.get(0).display();
             JOptionPane.showMessageDialog(GymGUI.this, "Data Added Successfully");
           } else {
             JOptionPane.showMessageDialog(GymGUI.this, "Invalid ID", "Error", JOptionPane.ERROR_MESSAGE);
@@ -250,8 +249,6 @@ public class GymGUI extends JFrame {
         locationField.setText("");
         phoneField.setText("");
         emailField.setText("");
-        dobField.setText("");
-        startDateField.setText("");
         referralSourceField.setText("");
         paidAmountField.setText("");
         removalReasonField.setText("");
@@ -265,14 +262,14 @@ public class GymGUI extends JFrame {
     saveToFileButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // Implement backend logic here
+
       }
     });
 
     readFromFileButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // Implement backend logic here
+
       }
     });
   }
